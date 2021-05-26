@@ -1,0 +1,36 @@
+{
+
+                  "ListaRichieste": [{
+						
+						 "cid":  "00001258",
+                         "nome": "Isabella",
+                         "cognome": "Potami",
+                         "mese": "Maggio",
+                         "residuo": "9",
+                         "totale": "10"
+
+            },
+
+            {
+						
+						 "cid":  "00001259",
+                        "nome": "Raffaella",
+                         "cognome": "Trimarchi",
+                         "mese": "Maggio",
+                         "residuo": "10",
+                         "totale": "10"
+
+            },
+             {
+						
+						 "cid":  "00001259",
+                        "nome": "Laura",
+                         "cognome": "D'Alessio",
+                         "mese": "Maggio",
+                         "residuo": "9",
+                         "totale": "10"
+
+            }
+            ]
+
+           }

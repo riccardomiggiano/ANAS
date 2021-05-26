@@ -1,0 +1,92 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.me"
+	xmlns:mvc="sap.ui.core.mvc" controllerName="ZHCM_LAVAGILE_APPRZHCM_LAVAGILE_APPR.controller.Main" displayBlock="true">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<l:VerticalLayout width="100%" height="75%" class="calendarVContainer">
+						<u:OverlapCalendar id="loggedInUserCalendar" weeksPerRow="2" class="loggedInUserCalendar" swipeToNavigate="false"
+							changeDate="_changeDatesForCalendars"/>
+					</l:VerticalLayout>
+					<l:VerticalLayout width="100%" height="75%" class="calendarVContainer">
+						<l:content>
+							<Table noDataText="Drop column list items here and columns in the area above" id="__table0">
+								<items>
+									<ColumnListItem id="__item0">
+										<cells>
+											<Text text="Row 1 Cell 1" id="__text3"/>
+											<Text text="Row 1 Cell 2" id="__text4"/>
+											<Text text="Row 1 Cell 3" id="__text5"/></cells>
+									</ColumnListItem>
+									<ColumnListItem id="__item1">
+										<cells>
+											<Text text="Row 2 Cell 1" id="__text6"/>
+											<Text text="Row 2 Cell 2" id="__text7"/>
+											<Text text="Row 2 Cell 3" id="__text8"/></cells>
+									</ColumnListItem>
+								</items>
+								<columns>
+									<Column id="__column0">
+										<header>
+											<Label text="Nome" id="__label0"/>
+										</header>
+									</Column>
+									<Column id="__column1">
+										<header>
+											<Label text="Cognome" id="__label1"/>
+										</header>
+									</Column>
+									<Column id="__column2">
+										<header>
+											<Label text="Data Richiesta" id="__label2"/>
+										</header>
+									</Column>
+								</columns>
+							</Table>
+						</l:content>
+					</l:VerticalLayout>
+						<l:VerticalLayout width="100%" height="75%" class="calendarVContainer">
+						<l:content>
+							<Table noDataText="Drop column list items here and columns in the area above" id="__tableb0">
+								<items>
+									<ColumnListItem id="b__item0">
+										<cells>
+											<Text text="Row 1 Cell 1" id="b__text3"/>
+											<Text text="Row 1 Cell 2" id="b__text4"/>
+											<Text text="Row 1 Cell 3" id="b__text5"/></cells>
+									</ColumnListItem>
+									<ColumnListItem id="b__item1">
+										<cells>
+											<Text text="Row 2 Cell 1" id="b__text6"/>
+											<Text text="Row 2 Cell 2" id="b__text7"/>
+											<Text text="Row 2 Cell 3" id="b__text8"/></cells>
+									</ColumnListItem>
+								</items>
+								<columns>
+									<Column id="b__column0">
+										<header>
+											<Label text="Nome" id="b__label0"/>
+										</header>
+									</Column>
+									<Column id="b__column1">
+										<header>
+											<Label text="Cognome" id="b__label1"/>
+										</header>
+									</Column>
+									<Column id="b__column2">
+										<header>
+											<Label text="Data Richiesta" id="b__label2"/>
+										</header>
+									</Column>
+								</columns>
+							</Table>
+						</l:content>
+					</l:VerticalLayout>
+					<l:VerticalLayout id="calendarLegendVLayout" width="100%" height="25%" class="legendContainer">
+						<u:CalendarLegend id="overlapCalendarLegend" expanded="true" width="100%"/>
+					</l:VerticalLayout>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

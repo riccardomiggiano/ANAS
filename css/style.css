@@ -1,0 +1,162 @@
+.eventPanel .sapMPanelContent{padding:0}.popoverVLayout{width:90%}.iconTabBarPaddingTop>div:nth-child(2){display:none}.popoverLabel{width:100%;text-align:center!important;margin:1%;word-wrap:inherit;text-overflow:initial;white-space:normal}.calendarSContainer>div:first-child{width:100%}
+
+
+.sapSvgLibs {
+  background-image: none, url(../../../../../../Base/baseLib/sap_belize/svg/libs/SAPGUI-icons.svg), url(../../../../../../Base/baseLib/sap_belize/svg/libs/SAPWeb-icons.svg);
+}
+.sapSvgLibsDataUri {
+  background-image: url("../../../Base/Base/baseLib/sap_belize/svg/libs/SAPWeb-icons.svg)");
+}
+.sapSvgIconPositive {
+  fill: #2b7c2b !important;
+}
+.sapSvgIconCritical {
+  fill: #e78c07 !important;
+}
+.sapSvgIconNegative {
+  fill: #bb0000 !important;
+}
+.sapMeCalendarLegendApproval .sapUIMeLegendColorForType06 {
+  background-color: #ffcd00 !Important;
+}
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarType06 {
+  background-color: #ffcd00 !Important;
+}
+.sapMeOverlapCalendarType06 {
+  background-color: #ffcd00 !Important;
+  z-index: -1;
+}
+.sapUshellShellHeadUsrItm {
+  color: #0033A0;
+}
+.sapMLabel {
+  color: #0033A0;
+}
+.sapUshellTileBase .sapUshellTileBaseTitle {
+  color: #0033A0;
+}
+.sapUiForm .sapUiFormTitle {
+  color: #0033A0;
+}
+.sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthName {
+  color: #0033A0;
+}
+.sapMeCalendarLegendApproval .sapUIMeLegendColorForType07 {
+  background-color: #9A3324;
+}
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarType07 {
+  background-color: #9A3324;
+}
+/* Team calendar GG Approvati */
+.sapMeOverlapCalendarType01 {
+  background-color: #00A9E0;
+}
+.sapMeOverlapCalendarType00 {
+  background-color: #97999B;
+}
+/* GG Approvati */
+.sapMeCalendarLegendApproval .sapUIMeLegendColorForType01 {
+  background-color: #00A9E0;
+}
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarType01 {
+  background-color: #00A9E0;
+}
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay {
+  border-left: 0.063rem solid #ffffff;
+  color: #0033A0;
+  background: #f2f2f2;
+  vertical-align: top;
+  border-bottom: 0.063rem solid #ffffff;
+}
+/* tolto rigato x rifiutato */
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarType07 {
+  background-color: #9A3324;
+  background: #9A3324;
+  /* background-image: url(../../../../../UI5/sap/me/themes/sap_bluecrystal/img/bg_white_transparent.png); */
+}
+/* tolto rigato nella Legenda x rifiutato */
+.sapMeCalendarLegendApproval .sapUIMeLegendColorForType07 {
+  background-color: #9A3324;
+  background: #9A3324;
+  /* background-image: url(../../../../../UI5/sap/me/themes/sap_bluecrystal/img/bg_white_transparent.png); */
+}
+/*GG non lavoraativo grigio anas */
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarType00 {
+  background: #97999B;
+}
+
+.sapUiCalendarRowAppsNoWork {
+    background-color:  #97999B !Important;
+}
+
+.sapUiCalItemWeekEnd {
+    background-color: #97999B !Important;
+
+}
+
+.sapUiCalWDay6 > .sapUiCalItemText, .sapUiCalWDay6 > .sapUiCalDayName{
+color: #ffffff !Important}
+
+.sapUiCalWDay0 > .sapUiCalItemText, .sapUiCalWDay0 > .sapUiCalDayName{
+color: #ffffff !Important}
+
+.sapMeCalendarLegendApproval .sapUIMeLegendColorForType00 {
+  background-color: #97999B;
+}
+/* cambiato celeste x rigato  */
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarType04 {
+  background-color: #00A9E0;
+}
+.sapMeCalendarLegendApproval .sapUIMeLegendColorForType04 {
+  background-color: #00A9E0;
+}
+button[title='Condividi'] {
+  display: none;
+}
+/* eliminato pulsante scelta catalogo
+.sapUshellShellHeadItm.sapUshellShellHeadItmSep {
+    width: 53px;
+    display: none;
+} */
+/*.sapMBtn {
+    display: none;
+}*/
+.sapUshellRoundedActionButton {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1;
+  height: 2.750rem;
+  display: none;
+}
+
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekendDay{
+background:#97999B !Important;
+}
+
+.contentClass, .sapUiXMLView, .sapUShellApplicationContainer {
+	background-color:#ffffff!Important;
+}
+
+/*
+button[id='configBtn'] {
+    display : none;
+}*/
+.sapUshellShellCntnt .configBtn {
+  display: none;
+}
+.sapUshellShellHeadBegin .sapUshellShellHeadItm.sapUshellShellHeadItmSep > span {
+  margin-right: 13px;
+  margin-left: 4px;
+  display: none;
+}
+
+.sapMPlanCalHead{
+    margin-top: 2rem;
+}
+
+.classTable{margin-top:1.5rem;}
+
+.sapMSLITitle, .sapMSLIDescription{
+    font-size: 0.8rem!Important;
+}

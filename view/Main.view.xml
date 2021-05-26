@@ -1,0 +1,205 @@
+<mvc:View 	
+	controllerName="ZHCM_LAVAGILE_APPRZHCM_LAVAGILE_APPR.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:unified="sap.ui.unified"
+	xmlns:t="sap.ui.table"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout">
+	<l:DynamicSideContent
+			id="DynamicSideContent"
+			class="sapUiDSCExplored sapUiContentPadding contentClass"
+			sideContentVisibility="AlwaysShow"
+			showSideContent="{path: 'stateModel>/legendShown'}"
+			containerQuery="true"
+			breakpointChanged="updateToggleButtonState">
+		<l:mainContent>
+		<PlanningCalendar
+			id="PC1"
+			viewKey="Week"
+			showWeekNumbers="3"
+			showIntervalHeaders="false"
+			startDate="{path: '/startDate'}"
+			minDate="{path: '/minDate'}"
+			maxDate="{path: '/maxDate'}"
+			rows="{path: '/people'}"
+			appointmentsVisualization="Filled"
+			appointmentSelect="handleAppointmentSelect">
+			<toolbarContent>
+				<Title text="{i18n>Titolo}" titleStyle="H6"/>
+				<ToolbarSpacer/>
+				<Label text="Visualizzare Informazioni Supplementari"/>
+				<Switch id="switchLegend" customTextOn="Si" customTextOff="No" state="{path: 'stateModel>/legendShown'}" />
+			</toolbarContent>
+			<rows>
+				<PlanningCalendarRow
+					icon="{pic}"
+					title="{name}"
+					text="{role}"
+					appointments="{path : 'appointments', templateShareable: 'true'}"
+					intervalHeaders="{path: 'headers', templateShareable: 'true'}">
+					<appointments>
+						<unified:CalendarAppointment
+							startDate="{start}"
+							endDate="{end}"
+							icon="{pic}"
+							title="{title}"
+							text="{info}"
+							type="{type}"
+							tentative="{tentative}">
+						</unified:CalendarAppointment>
+					</appointments>
+					<intervalHeaders>
+						<unified:CalendarAppointment
+							startDate="{start}"
+							endDate="{end}"
+							icon="{pic}"
+							title="{title}"
+							type="{type}">
+						</unified:CalendarAppointment>
+					</intervalHeaders>
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>
+	
+			<Table
+				id="table"
+				class="classTable"
+				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				growing="true"
+				growingScrollToLoad="true"
+				noDataText="{worklistView>/tableNoDataText}"
+				updateFinished="onUpdateFinished"
+				width="auto"
+				items="{modello>/ListaRichieste}">
+				<headerToolbar>
+					<Toolbar>
+						<Title
+							id="tableHeader" titleStyle="H6"
+							text="{i18n>worklistTableTitle}"/>
+						<ToolbarSpacer/>
+						<Button text="Approvazione Richiesta" type="Accept"/>
+						<Button text="Rifiuto Richiesta" type="Reject"/>
+			
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="cc1" width="5rem">
+							<Text
+							id="Sel"
+							text=""/>
+					</Column>
+					<Column id="c1" >
+						<Text
+							id="Name"
+							text="{i18n>cName}"/>
+					</Column>
+					<Column
+						id="c2"
+						demandPopin="false"
+						minScreenWidth="Tablet">
+						<Text text="{i18n>cSurname}"/>
+					</Column>
+					<Column
+						id="c3"
+						hAlign="End"
+						demandPopin="true"
+						minScreenWidth="Tablet">
+						<Text text="{i18n>cData}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem
+						press="onPress">
+						<cells>
+							<CheckBox/>
+							<Text text = "{modello>nome}"/>
+							<Text text = "{modello>cognome}"/>
+							<Text text = "{modello>dataRic}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			
+
+		</l:mainContent>
+		
+		<l:sideContent width="200px">
+		
+				<PlanningCalendarLegend id="PlanningCalendarLegend" width="100%"
+				items="{path : '/legendItems', templateShareable: 'true'}"
+				appointmentItems="{path : '/legendAppointmentItems', templateShareable: 'true'}"
+				standardItems="Today,Selected,NonWorkingDay">
+				<items>
+					<unified:CalendarLegendItem text="{text}" type="{type}" tooltip="{text}" />
+				</items>
+				<appointmentItems>
+					<unified:CalendarLegendItem text="{text}" type="{type}" tooltip="{text}" />
+				</appointmentItems>
+			</PlanningCalendarLegend>
+			
+			
+				<Table
+				id="table2"
+				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				growing="true"
+				growingScrollToLoad="true"
+				noDataText="{worklistView>/tableNoDataText}"
+				updateFinished="onUpdateFinished"
+				width="auto"
+				items="{modello2>/ListaRichieste}">
+				<headerToolbar>
+					<Toolbar>
+						<Title
+							id="tableHeader_Dip"
+							text="Riepilogo Monte giorni LA"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+				
+					<Column
+						id="nome"
+						demandPopin="false"
+						minScreenWidth="Tablet">
+						<Text text="Nome"/>
+					</Column>
+					<Column
+						id="Cognome"
+						hAlign="End"
+						demandPopin="true"
+						minScreenWidth="Tablet">
+						<Text text="Cognome"/>
+					</Column>
+					<Column
+						id="Mese"
+						hAlign="End"
+						demandPopin="true"
+						minScreenWidth="Tablet">
+						<Text text="Mese"/>
+					</Column>
+					<Column
+						id="Residuo"
+						hAlign="End"
+						demandPopin="true"
+						minScreenWidth="Tablet">
+						<Text text="Residuo"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem
+						press="onPress">
+						<cells>
+							<Text text = "{modello2>nome}"/>
+							<Text text = "{modello2>cognome}"/>
+							<Text text = "{modello2>mese}"/>
+							<Text text = "{modello2>residuo}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			
+			</l:sideContent>
+	 
+		</l:DynamicSideContent>
+</mvc:View>

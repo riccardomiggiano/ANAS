@@ -1,0 +1,27 @@
+{
+
+                  "ListaRichieste": [{
+
+                         "nome": "Isabella",
+                         "cognome": "Potami",
+                         "dataRic": "25/05/2021"
+
+            },
+
+            {
+
+                        "nome": "Raffaella",
+                         "cognome": "Trimarchi",
+                         "dataRic": "24/05/2021"
+
+            },
+             {
+
+                        "nome": "Raffaella",
+                         "cognome": "Trimarchi",
+                         "dataRic": "26/05/2021"
+
+            }
+            ]
+
+           }
