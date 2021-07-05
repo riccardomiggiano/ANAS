@@ -35,8 +35,8 @@ sap.ui.define([
 		},
 		
 		onInit: function () {
-				// create model
 				
+			//Modello per stato apertura 
 			var oStateModel = new JSONModel();
  				oStateModel.setData({
  					legendShown: false
@@ -62,6 +62,7 @@ sap.ui.define([
 
 			},
 			
+			// Funzioni Custom //
 			panelExpand: function(){
 				
 				this.getView().byId("viewPlanning").setVisible(!this.getView().byId("viewPlanning").getVisible());
@@ -71,25 +72,34 @@ sap.ui.define([
 			// Funzione Private //
 			_init_services: function(){
 				
-				var oModelListaRichieste = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZHCM_LAVORO_AGILE_REQ_APPROVE_SRV", false);
 				var oView = this.getView();
-				
+				var oModelListaRichieste = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZHCM_LAVORO_AGILE_REQ_APPROVE_SRV", false);
 				oView.setModel(oModelListaRichieste, "modello");
 				oView.setBusy(true);
 			
 				oModelListaRichieste.read("/LeaveRequestSet", {
-				success: function _OnSuccess(oData, response) {
-					oView.setBusy(false);
-					
-					
-					
-				},
-				error: function _OnError(oError) {
-					oView.setBusy(false);
-					MessageToast.show("LeaveRequestSet Error: " + oError);
-				}
-			});
+					success: function _OnSuccess(oData, response) {
+						oView.setBusy(false);
+					},
+					error: function _OnError(oError) {
+						oView.setBusy(false);
+						MessageToast.show("LeaveRequestSet Error: " + oError);
+					}
+				});
 			
+				var oModelComboStati = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZHCM_LAVORO_AGILE_REQ_APPROVE_SRV", false);
+				
+				oModelComboStati.read("/StatoSet", {
+					success: function _OnSuccess(oData, response) {
+						var oListaStati =  new JSONModel();
+						oListaStati.setData(oData);
+						oView.setModel(oListaStati, "modello4");
+					},
+					error: function _OnError(oError) {
+						
+						MessageToast.show("LeaveRequestSet Error: " + oError);
+					}
+				});				
 				
 				this._init_stubs();
 				
@@ -136,6 +146,35 @@ sap.ui.define([
 				
 			});
 			
+			
+						this.getView().setModel(oModelStub6, "modello6");
+			
+			
+// 							var oModelStub4 = new JSONModel({
+				
+// "results": [
+// 			{
+				
+// 				"Codice": "01",
+// 				"Descrizione": "Da Elaborare"
+// 			},
+// 			{
+			
+// 				"Codice": "02",
+// 				"Descrizione": "Approvato"
+// 			},
+// 			{
+			
+// 				"Codice": "03",
+// 				"Descrizione": "Rifiutato"
+// 			}
+// 		]
+				
+// 			});
+			
+			
+// 						this.getView().setModel(oModelStub4, "modello4");
+						
 			
 			var oModelStub = new JSONModel({
 
@@ -212,7 +251,7 @@ sap.ui.define([
 			//this.getView().setModel(oModelStub, "modello");
 			
 			
-			this.getView().setModel(oModelStub6, "modello6");
+
 			
 			var oModelStub2 = new JSONModel({
 

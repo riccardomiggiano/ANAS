@@ -50,8 +50,8 @@
 						<MultiComboBox showSecondaryValues="true" width="15rem" placeholder="Filtro per Dipendente" items="{modello5>/Dipendenti}">
 							<core:ListItem key="{modello5>CID}" text="{modello5>nome} {modello5&gt;cognome}"/>
 						</MultiComboBox>
-						<MultiComboBox showSecondaryValues="true" width="10rem" placeholder="Filtro per Stato" items="{modello4>/Stati}">
-							<core:ListItem key="{modello4>idStato}" text="{modello4>descrizione}" additionalText="{modello4>descrizione2}"/>
+						<MultiComboBox showSecondaryValues="true" width="10rem" placeholder="Filtro per Stato" items="{modello4>/results}">
+							<core:Item key="{modello4>Codice}" text="{modello4>Descrizione}"/>
 						</MultiComboBox>
 						<Button text="Approva Richiesta" type="Accept"/>
 						<Button text="Rifiuta Richiesta" type="Reject"/>
