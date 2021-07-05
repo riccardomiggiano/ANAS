@@ -18,6 +18,17 @@
 			"version": "1.52.13"
 		},
 		"description": "SAPUI5 Test Resources"
-	}],
+	},
+	    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "HCM",
+        "entryPath": "/sap/opu/odata"
+      },
+      	"description": "HCM"
+	}
+	
+	],
 	"sendWelcomeFileRedirect": true
 }

@@ -1,203 +1,162 @@
-<mvc:View 	
-	controllerName="ZHCM_LAVAGILE_APPRZHCM_LAVAGILE_APPR.controller.Main"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:unified="sap.ui.unified"
-	xmlns:t="sap.ui.table"
-	xmlns="sap.m"
-	xmlns:l="sap.ui.layout">
-	<l:DynamicSideContent
-			id="DynamicSideContent"
-			class="sapUiDSCExplored sapUiContentPadding contentClass"
-			sideContentVisibility="AlwaysShow"
-			showSideContent="{path: 'stateModel>/legendShown'}"
-			containerQuery="true"
-			breakpointChanged="updateToggleButtonState">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:unified="sap.ui.unified" xmlns:t="sap.ui.table" xmlns="sap.m" xmlns:l="sap.ui.layout" controllerName="ZHCM_LAVAGILE_APPRZHCM_LAVAGILE_APPR.controller.Main">
+	<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored sapUiContentPadding contentClass customscroll" sideContentVisibility="AlwaysShow" showSideContent="{path: 'stateModel>/legendShown'}" containerQuery="true" breakpointChanged="updateToggleButtonState">
 		<l:mainContent>
-		<PlanningCalendar
-			id="PC1"
-			viewKey="Week"
-			showWeekNumbers="3"
-			showIntervalHeaders="false"
-			startDate="{path: '/startDate'}"
-			minDate="{path: '/minDate'}"
-			maxDate="{path: '/maxDate'}"
-			rows="{path: '/people'}"
-			appointmentsVisualization="Filled"
-			appointmentSelect="handleAppointmentSelect">
-			<toolbarContent>
-				<Title text="{i18n>Titolo}" titleStyle="H6"/>
+	<Panel expandable="true" expanded="false" expand="panelExpand">
+			<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Calendario di Pianificazione del Lavoro Agile Ordinario"/>
+				<ToolbarSpacer />
+					<Label text="Visualizzare Informazioni Supplementari"/>
+				<Switch id="switchLegend2" customTextOn="Si" customTextOff="No" state="{path: 'stateModel>/legendShown'}"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<PlanningCalendar appointmentsReducedHeight="true" class="PlanningCalendar" id="PC1" viewKey="Week" showWeekNumbers="3" showIntervalHeaders="false" startDate="{path: '/startDate'}" minDate="{path: '/minDate'}" maxDate="{path: '/maxDate'}" rows="{path: '/people'}" appointmentsVisualization="Filled" appointmentSelect="handleAppointmentSelect">
+		<!--	<toolbarContent>
+				<Title text="{i18n>Titolo}" titleStyle="H5" level="H1"/>
 				<ToolbarSpacer/>
 				<Label text="Visualizzare Informazioni Supplementari"/>
-				<Switch id="switchLegend" customTextOn="Si" customTextOff="No" state="{path: 'stateModel>/legendShown'}" />
-			</toolbarContent>
-			<rows>
-				<PlanningCalendarRow
-					icon="{pic}"
-					title="{name}"
-					text="{role}"
-					appointments="{path : 'appointments', templateShareable: 'true'}"
-					intervalHeaders="{path: 'headers', templateShareable: 'true'}">
+				<Switch id="switchLegend" customTextOn="Si" customTextOff="No" state="{path: 'stateModel>/legendShown'}"/>
+			</toolbarContent>-->
+			<rows class="rigaPlanning">
+				<PlanningCalendarRow icon="{pic}" title="{name}"  appointments="{path : 'appointments', templateShareable: 'true'}" intervalHeaders="{path: 'headers', templateShareable: 'true'}">
 					<appointments>
-						<unified:CalendarAppointment
-							startDate="{start}"
-							endDate="{end}"
-							icon="{pic}"
-							title="{title}"
-							text="{info}"
-							type="{type}"
-							tentative="{tentative}">
+						<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" text="{info}" type="{type}" tentative="{tentative}">
 						</unified:CalendarAppointment>
 					</appointments>
 					<intervalHeaders>
-						<unified:CalendarAppointment
-							startDate="{start}"
-							endDate="{end}"
-							icon="{pic}"
-							title="{title}"
-							type="{type}">
+						<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" type="{type}">
 						</unified:CalendarAppointment>
 					</intervalHeaders>
 				</PlanningCalendarRow>
 			</rows>
 		</PlanningCalendar>
-	
-			<Table
-				id="table"
-				class="classTable"
-				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
-				growing="true"
-				growingScrollToLoad="true"
-				noDataText="{worklistView>/tableNoDataText}"
-				updateFinished="onUpdateFinished"
-				width="auto"
-				items="{modello>/ListaRichieste}">
+		</Panel>
+			<VBox id="viewPlanning" visible="false">
+		<HBox class="spaceBottomDiv" alignContent="Center" alignItems="End" justifyContent="End">
+				<Label text="Variante di Visualizzazione Intervallo Temporale:" textAlign="Center" class="spaceBottom"/>	
+				<CheckBox id="c_week" text="1 Settimana" selected="true" select="selectValueWeek"/>
+				<CheckBox id="c_week2" text="2 Settimane" selected="false" select="selectValueWeek2"/>
+				<CheckBox id="c_month" text="1 Mese" selected="false" select="selectValueMonth"/>
+		</HBox></VBox>
+			<Table id="table" mode="MultiSelect" class="classTable" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" noDataText="{worklistView>/tableNoDataText}" updateFinished="onUpdateFinished" width="auto" items="{modello>/LeaveRequestSet}">
 				<headerToolbar>
 					<Toolbar>
-						<Title
-							id="tableHeader" titleStyle="H6"
-							text="{i18n>worklistTableTitle}"/>
+						<Title id="tableHeader" titleStyle="H6" text="{i18n>worklistTableTitle}"/>
+						
 						<ToolbarSpacer/>
-						<Button text="Approvazione Richiesta" type="Accept"/>
-						<Button text="Rifiuto Richiesta" type="Reject"/>
+						<MultiComboBox showSecondaryValues="true" width="16rem" placeholder="Unità Organizzativa" items="{modello6>/uo}">
+							<core:ListItem key="{modello6>idUo}" text="{modello6>descrizione}"/>
+						</MultiComboBox>
+						<MultiComboBox showSecondaryValues="true" width="15rem" placeholder="Filtro per Dipendente" items="{modello5>/Dipendenti}">
+							<core:ListItem key="{modello5>CID}" text="{modello5>nome} {modello5&gt;cognome}"/>
+						</MultiComboBox>
+						<MultiComboBox showSecondaryValues="true" width="10rem" placeholder="Filtro per Stato" items="{modello4>/Stati}">
+							<core:ListItem key="{modello4>idStato}" text="{modello4>descrizione}" additionalText="{modello4>descrizione2}"/>
+						</MultiComboBox>
+						<Button text="Approva Richiesta" type="Accept"/>
+						<Button text="Rifiuta Richiesta" type="Reject"/>
+						<Button icon="sap-icon://sort"/>
 			
 					</Toolbar>
 				</headerToolbar>
 				<columns>
-					<Column id="cc1" width="5rem">
-							<Text
-							id="Sel"
-							text=""/>
+
+						<Column id="cc2" width="7rem" hAlign="Center">
+							<Text id="Stato" text="Stato"/>
 					</Column>
-					<Column id="c1" >
-						<Text
-							id="Name"
-							text="{i18n>cName}"/>
+					<Column id="c1">
+						<Text id="Name" text="{i18n>cName}"/>
 					</Column>
-					<Column
-						id="c2"
-						demandPopin="false"
-						minScreenWidth="Tablet">
+					<Column id="c2" demandPopin="false" minScreenWidth="Tablet">
 						<Text text="{i18n>cSurname}"/>
 					</Column>
-					<Column
-						id="c3"
-						hAlign="End"
-						demandPopin="true"
-						minScreenWidth="Tablet">
-						<Text text="{i18n>cData}"/>
+					<Column id="c3_b" width="20rem" demandPopin="true" minScreenWidth="Tablet">
+						<Text text="Unità Organizzativa"/>
+					</Column>
+					<Column id="c3" demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+						<Text text="Data Richiesta del Giustifcativo"/>
+					</Column>
+					<Column id="c4" demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+						<Text text="Data schedulazione Lavoro Agile"/>
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem
-						press="onPress">
+					<ColumnListItem press="onPress">
+							<customData>
+						     	<core:CustomData key="mydata" value="{modello>stato}" writeToDom="true"/>
+							</customData>
 						<cells>
-							<CheckBox/>
-							<Text text = "{modello>nome}"/>
-							<Text text = "{modello>cognome}"/>
-							<Text text = "{modello>dataRic}"/>
+		
+							<Text class="prova" text="{modello>stato}"/>
+							<Text text="{modello>nome}"/>
+							<Text text="{modello>cognome}"/>
+							<Text text="{modello>uo}"/>
+							<Text text="{modello>dataRic}"/>
+							<Text text="{modello>dataSched}"/>
 						
 						</cells>
 					</ColumnListItem>
 				</items>
 			</Table>
+	
 			
 
 		</l:mainContent>
 		
 		<l:sideContent width="200px">
 		
-				<PlanningCalendarLegend id="PlanningCalendarLegend" width="100%"
-				items="{path : '/legendItems', templateShareable: 'true'}"
-				appointmentItems="{path : '/legendAppointmentItems', templateShareable: 'true'}"
-				standardItems="Today,Selected,NonWorkingDay">
+				<PlanningCalendarLegend id="PlanningCalendarLegend" width="100%" items="{path : 'modello3>/legendItems', templateShareable: 'true'}" appointmentItems="{path : '/legendAppointmentItems', templateShareable: 'true'}" standardItems="Today,Selected,NonWorkingDay" itemsHeader="Legenda della Tabella di Pianificazione">
 				<items>
-					<unified:CalendarLegendItem text="{text}" type="{type}" tooltip="{text}" />
+					<unified:CalendarLegendItem text="{modello3>text}" type="{modello3>type}" tooltip="{modello3>text}" color="{modello3>color}"/>
 				</items>
 				<appointmentItems>
-					<unified:CalendarLegendItem text="{text}" type="{type}" tooltip="{text}" />
+					<unified:CalendarLegendItem text="{text}" type="{type}" tooltip="{text}"/>
 				</appointmentItems>
 			</PlanningCalendarLegend>
 			
+			<Panel expandable="false" headerText="Riepilogo Monte giorni Lavoro Agile Ordinario" class="Panel">
+					<VBox class="spaceBottomDiv2">
+						<Label text="Mese elaborazione: Maggio 2021" class="spaceBottomDiv"/>
+						<SearchField width="100%" />
+						</VBox>
+				<Table  id="table2" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" noDataText="{worklistView>/tableNoDataText}" updateFinished="onUpdateFinished" width="auto" items="{modello2>/LeaveRequestSet}">
 			
-				<Table
-				id="table2"
-				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
-				growing="true"
-				growingScrollToLoad="true"
-				noDataText="{worklistView>/tableNoDataText}"
-				updateFinished="onUpdateFinished"
-				width="auto"
-				items="{modello2>/ListaRichieste}">
-				<headerToolbar>
-					<Toolbar>
-						<Title
-							id="tableHeader_Dip"
-							text="Riepilogo Monte giorni LA"/>
-					</Toolbar>
-				</headerToolbar>
 				<columns>
 				
-					<Column
-						id="nome"
-						demandPopin="false"
-						minScreenWidth="Tablet">
+					<Column id="nome" demandPopin="false" minScreenWidth="Tablet" width="5.5rem">
 						<Text text="Nome"/>
 					</Column>
-					<Column
-						id="Cognome"
-						hAlign="End"
-						demandPopin="true"
-						minScreenWidth="Tablet">
-						<Text text="Cognome"/>
-					</Column>
-					<Column
-						id="Mese"
-						hAlign="End"
-						demandPopin="true"
-						minScreenWidth="Tablet">
-						<Text text="Mese"/>
-					</Column>
-					<Column
-						id="Residuo"
-						hAlign="End"
-						demandPopin="true"
-						minScreenWidth="Tablet">
+					<Column id="Residuo" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
 						<Text text="Residuo"/>
+					</Column>
+					<Column id="Approvato" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+						<Text text="Approvato"/>
+					</Column>
+						<Column id="DaApprovare" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+						<Text text="da Approv."/>
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem
-						press="onPress">
+					<ColumnListItem press="onPress">
+						
+							<customData>
+						     	<core:CustomData key="mydata2" value="ALL" writeToDom="true"/>
+							</customData>
+						
 						<cells>
-							<Text text = "{modello2>nome}"/>
-							<Text text = "{modello2>cognome}"/>
-							<Text text = "{modello2>mese}"/>
-							<Text text = "{modello2>residuo}"/>
+							<Text text="{modello2>nome}"/>
+							<Text text="{modello2>residuo}"/>
+							<Text text="{modello2>approvato}"/>
+							<Text text="{modello2>daApprovare}"/>
 						
 						</cells>
 					</ColumnListItem>
 				</items>
 			</Table>
+			
+			
+			</Panel>
+			
 			
 			</l:sideContent>
 	 
