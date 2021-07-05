@@ -37,9 +37,21 @@ sap.ui.define([
 		onInit: function () {
 				// create model
 				
-				
+			var oStateModel = new JSONModel();
+ 				oStateModel.setData({
+ 					legendShown: false
+ 				});
+ 				this.getView().setModel(oStateModel, "stateModel");
+			
 			this._init_services();
-				
+			
+			//Impostazione filtri
+			
+			//BEGDA
+			
+			//ENDDA
+			
+			
 
 			//var oView = this.getView(),
 			//oFilter = new Filter("stato", FilterOperator.Contains, 'RICHIESTO');

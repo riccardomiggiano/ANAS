@@ -67,9 +67,7 @@
 					<Column id="c1">
 						<Text id="Name" text="{i18n>cName}"/>
 					</Column>
-					<Column id="c2" demandPopin="false" minScreenWidth="Tablet">
-						<Text text="{i18n>cSurname}"/>
-					</Column>
+
 					<Column id="c3_b" width="20rem" demandPopin="true" minScreenWidth="Tablet">
 						<Text text="Unità Organizzativa"/>
 					</Column>
@@ -87,12 +85,26 @@
 							</customData>
 						<cells>
 		
-							<Text class="prova" text="{modello>stato}"/>
-							<Text text="{modello>nome}"/>
-							<Text text="{modello>cognome}"/>
-							<Text text="{modello>uo}"/>
-							<Text text="{modello>dataRic}"/>
-							<Text text="{modello>dataSched}"/>
+							<Text class="prova" text="{modello>DescrStato}"/>
+							<Text text="{modello>RequesterName}"/>
+
+							<Text text="{modello>Uodescr}"/>
+							<Text text="{
+								path: 'modello>FirstSubmDate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									style: 'medium'
+							 
+								}
+							}"/>
+							<Text text="{
+								path: 'modello>StartDate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									style: 'medium'
+									}
+							 
+								}"/>
 						
 						</cells>
 					</ColumnListItem>
