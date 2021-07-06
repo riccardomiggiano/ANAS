@@ -10,7 +10,14 @@
 				<Switch id="switchLegend2" customTextOn="Si" customTextOff="No" state="{path: 'stateModel>/legendShown'}"/>
 			</OverflowToolbar>
 		</headerToolbar>
-		<PlanningCalendar appointmentsReducedHeight="true" class="PlanningCalendar" id="PC1" viewKey="Week" showWeekNumbers="3" showIntervalHeaders="false" startDate="{path: '/startDate'}" minDate="{path: '/minDate'}" maxDate="{path: '/maxDate'}" rows="{path: '/people'}" appointmentsVisualization="Filled" appointmentSelect="handleAppointmentSelect">
+		<PlanningCalendar appointmentsReducedHeight="true" class="PlanningCalendar" id="PC1" viewKey="Week" showWeekNumbers="3" 
+			showIntervalHeaders="false" 
+			startDate="{path: 'modello>/startDate'}" 
+			minDate="{path: '/minDate'}" 
+			maxDate="{path: '/maxDate'}" 
+			rows="{path: '{modello>/LeaveRequestSet}'}" 
+			appointmentsVisualization="Filled" 
+			appointmentSelect="handleAppointmentSelect">
 		<!--	<toolbarContent>
 				<Title text="{i18n>Titolo}" titleStyle="H5" level="H1"/>
 				<ToolbarSpacer/>
@@ -18,7 +25,7 @@
 				<Switch id="switchLegend" customTextOn="Si" customTextOff="No" state="{path: 'stateModel>/legendShown'}"/>
 			</toolbarContent>-->
 			<rows class="rigaPlanning">
-				<PlanningCalendarRow icon="{pic}" title="{name}"  appointments="{path : 'appointments', templateShareable: 'true'}" intervalHeaders="{path: 'headers', templateShareable: 'true'}">
+				<PlanningCalendarRow icon="{pic}" title="{modello>RequesterName}"  appointments="{path : 'appointments', templateShareable: 'true'}" intervalHeaders="{path: 'headers', templateShareable: 'true'}">
 					<appointments>
 						<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" text="{info}" type="{type}" tentative="{tentative}">
 						</unified:CalendarAppointment>
@@ -38,14 +45,15 @@
 				<CheckBox id="c_week2" text="2 Settimane" selected="false" select="selectValueWeek2"/>
 				<CheckBox id="c_month" text="1 Mese" selected="false" select="selectValueMonth"/>
 		</HBox></VBox>
-			<Table id="table" mode="MultiSelect" class="classTable" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" noDataText="{worklistView>/tableNoDataText}" updateFinished="onUpdateFinished" width="auto" items="{modello>/LeaveRequestSet}">
+			<Table id="table" mode="MultiSelect" class="classTable" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" 
+				noDataText="{worklistView>/tableNoDataText}" updateFinished="onUpdateFinished" width="auto" items="{modello>/LeaveRequestSet}">
 				<headerToolbar>
 					<Toolbar>
 						<Title id="tableHeader" titleStyle="H6" text="{i18n>worklistTableTitle}"/>
 						
 						<ToolbarSpacer/>
-						<MultiComboBox showSecondaryValues="true" width="16rem" placeholder="Unità Organizzativa" items="{modello6>/uo}">
-							<core:ListItem key="{modello6>idUo}" text="{modello6>descrizione}"/>
+						<MultiComboBox showSecondaryValues="true" width="16rem" placeholder="Unità Organizzativa" items="{modello6>/results}">
+							<core:ListItem key="{modello6>Codice}" text="{modello6>Descrizione}"/>
 						</MultiComboBox>
 						<MultiComboBox showSecondaryValues="true" width="15rem" placeholder="Filtro per Dipendente" items="{modello5>/Dipendenti}">
 							<core:ListItem key="{modello5>CID}" text="{modello5>nome} {modello5&gt;cognome}"/>
@@ -53,8 +61,8 @@
 						<MultiComboBox showSecondaryValues="true" width="10rem" placeholder="Filtro per Stato" items="{modello4>/results}">
 							<core:Item key="{modello4>Codice}" text="{modello4>Descrizione}"/>
 						</MultiComboBox>
-						<Button text="Approva Richiesta" type="Accept"/>
-						<Button text="Rifiuta Richiesta" type="Reject"/>
+						<Button text="Approva Richiesta" type="Accept" press="onApprova"/>
+						<Button text="Rifiuta Richiesta" type="Reject" press="onRifiuta"/>
 						<Button icon="sap-icon://sort"/>
 			
 					</Toolbar>
@@ -64,8 +72,13 @@
 						<Column id="cc2" width="7rem" hAlign="Center">
 							<Text id="Stato" text="Stato"/>
 					</Column>
+					
+										<Column id="c0" visible="false">
+						<Text id="id" text="{i18n>cName}" />
+					</Column>
+					
 					<Column id="c1">
-						<Text id="Name" text="{i18n>cName}"/>
+						<Text id="Name" text="{i18n>cName}" />
 					</Column>
 
 					<Column id="c3_b" width="20rem" demandPopin="true" minScreenWidth="Tablet">
@@ -84,8 +97,9 @@
 						     	<core:CustomData key="mydata" value="{modello>stato}" writeToDom="true"/>
 							</customData>
 						<cells>
-		
+						
 							<Text class="prova" text="{modello>DescrStato}"/>
+							<Text text="{modello>RequestId}"/>
 							<Text text="{modello>RequesterName}"/>
 
 							<Text text="{modello>Uodescr}"/>
