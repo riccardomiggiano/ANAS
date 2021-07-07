@@ -13,6 +13,8 @@ sap.ui.define([
 
 	return Controller.extend("ZHCM_LAVAGILE_APPRZHCM_LAVAGILE_APPR.controller.Main", {
 
+		//Versione 1.0
+		
 		selectValueWeek2: function() {
 			this.getView().byId("PC1").setViewKey("Day");
 			this.getView().byId("c_week").setSelected(false);
